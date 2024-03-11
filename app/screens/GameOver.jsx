@@ -3,10 +3,8 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function GameScreen() {
   return (
-    <View>
-      <Text>Gameover</Text>
-    </View>
+    <Text>gameover</Text>
   );
 }
 
-// const styles = StyleSheet.create({});
+ const styles = StyleSheet.create({});
