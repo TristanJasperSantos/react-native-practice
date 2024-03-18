@@ -1,13 +1,15 @@
-import { Link } from "expo-router";
-
 import { StyleSheet, Text, TextInput, View, Alert } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 import { useState } from "react";
 import Colors from "../constants/colors";
+import Title from "../components/Title";
+import Cards from "../components/Card";
+import InstructionText from "../components/InstructionText";
+
 
 
 export default function GameScreen({onPick}) {
-  const [enteredValue, setEnteredValue] = useState("12")
+  const [enteredValue, setEnteredValue] = useState("")
 
   const handleInput = (EnteredValue)=>{
     setEnteredValue(EnteredValue)
@@ -32,41 +34,30 @@ export default function GameScreen({onPick}) {
 
   
   return (
-    <View style={styles.inputContainer}>
-      <TextInput 
-       style={styles.numberInput} 
-       maxLength={2} 
-       keyboardType="number-pad"
-       autoComplete="off"
-       onChangeText={handleInput}
-       value={enteredValue}
-       />
-       
-      <View style={styles.buttonsContainer}>      
-        <View style={styles.buttonContainer}><PrimaryButton onPress={resetInput} >Reset</PrimaryButton></View>
-        <View style={styles.buttonContainer}><PrimaryButton onPress={confirmInput }>Confirm</PrimaryButton></View>
-      </View>
+    <View>
+       <Title>Guess My Number</Title>
+        <Cards>
+          <InstructionText>Enter a number</InstructionText>
+          <TextInput 
+          style={styles.numberInput} 
+          maxLength={2} 
+          keyboardType="number-pad"
+          autoComplete="off"
+          onChangeText={handleInput}
+          value={enteredValue}
+          />
+        
+          <View style={styles.buttonsContainer}>      
+            <View style={styles.buttonContainer}><PrimaryButton onPress={resetInput} >Reset</PrimaryButton></View>
+            <View style={styles.buttonContainer}><PrimaryButton onPress={confirmInput }>Confirm</PrimaryButton></View>
+          </View>
+        </Cards>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-    inputContainer:{
-      alignItems:"center",
-      marginTop: 80,
-      marginHorizontal: 24,
-      padding: 15,
-      borderRadius: 12,
-      backgroundColor: Colors.primary700,
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 5,
-      },
-      shadowOpacity: 0.34,
-      shadowRadius: 6.27,
-      elevation: 10,
-    },
+   
     numberInput:{
       height: 50,
       fontSize: 32,
@@ -83,6 +74,10 @@ const styles = StyleSheet.create({
       flexDirection:"row",
     },
      buttonContainer:{
-      flex:1,
-     }
+      flex:2,
+    },
+    instructionText:{
+      fontSize:24,
+      color: Colors.accent500
+    }
 });
